@@ -28,3 +28,13 @@ except ImportError:
 # Paths relative to project root
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 ARTIFACT_PATH = PROJECT_ROOT / "artifacts" / "contracts" / "MonkeyApe.sol" / "MonkeyApe.json"
+
+
+def compile_contract():
+    """Run Hardhat compile so artifact exists."""
+    if ARTIFACT_PATH.exists():
+        return True
+    print("Compiling contracts (npx hardhat compile)...")
+    result = subprocess.run(
+        ["npx", "hardhat", "compile"],
+        cwd=PROJECT_ROOT,
