@@ -58,3 +58,13 @@ def main():
 
     w3 = Web3(Web3.HTTPProvider(rpc_url))
     if not w3.is_connected():
+        print(f"Cannot connect to RPC: {rpc_url}")
+        sys.exit(1)
+    print(f"Connected to {rpc_url} (chain_id={w3.eth.chain_id})")
+
+    if not pk:
+        print("Set DEPLOYER_PRIVATE_KEY in the environment to deploy.")
+        sys.exit(1)
+
+    if not compile_contract():
+        print("Compilation failed.")
