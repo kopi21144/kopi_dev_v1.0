@@ -38,3 +38,13 @@ def compile_contract():
     result = subprocess.run(
         ["npx", "hardhat", "compile"],
         cwd=PROJECT_ROOT,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        print(result.stderr or result.stdout)
+        return False
+    return ARTIFACT_PATH.exists()
+
+
+def load_artifact():
