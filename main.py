@@ -68,3 +68,13 @@ def main():
 
     if not compile_contract():
         print("Compilation failed.")
+        sys.exit(1)
+
+    artifact = load_artifact()
+    contract = w3.eth.contract(abi=artifact["abi"], bytecode=artifact["bytecode"])
+
+    account = w3.eth.account.from_key(pk)
+    print(f"Deployer: {account.address}")
+
+    tx = contract.constructor().build_transaction(
+        {
