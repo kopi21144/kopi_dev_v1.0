@@ -88,3 +88,12 @@ def main():
 
     if receipt["status"] != 1:
         print("Deployment transaction failed.")
+        sys.exit(1)
+
+    address = receipt["contractAddress"]
+    print(f"MonkeyApe (MAPE) deployed to: {address}")
+    return address
+
+
+if __name__ == "__main__":
+    main()
