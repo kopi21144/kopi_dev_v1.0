@@ -48,3 +48,13 @@ def compile_contract():
 
 
 def load_artifact():
+    with open(ARTIFACT_PATH, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def main():
+    rpc_url = os.environ.get("RPC_URL", "http://127.0.0.1:8545")
+    pk = os.environ.get("DEPLOYER_PRIVATE_KEY")
+
+    w3 = Web3(Web3.HTTPProvider(rpc_url))
+    if not w3.is_connected():
