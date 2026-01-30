@@ -18,3 +18,13 @@ import os
 import subprocess
 import sys
 from pathlib import Path
+
+try:
+    from web3 import Web3
+except ImportError:
+    print("Install dependencies: pip install -r requirements.txt")
+    sys.exit(1)
+
+# Paths relative to project root
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+ARTIFACT_PATH = PROJECT_ROOT / "artifacts" / "contracts" / "MonkeyApe.sol" / "MonkeyApe.json"
